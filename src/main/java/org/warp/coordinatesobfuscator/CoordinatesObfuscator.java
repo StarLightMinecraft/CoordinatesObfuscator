@@ -13,10 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -193,6 +190,12 @@ public class CoordinatesObfuscator extends JavaPlugin implements Listener {
 		//PlayerManager.joinPlayer(event.getPlayer());
 
 		setMaxWorldBorder(event.getPlayer()); // StarLightMinecraft
+	}
+
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void onPlayerSwitchWorld(final PlayerChangedWorldEvent event) {
+
+		setMaxWorldBorder(event.getPlayer());
 	}
 
 	// StarLightMinecraft Start - set a fake "full" worldborder for player to avoid breaking
